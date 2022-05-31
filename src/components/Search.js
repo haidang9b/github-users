@@ -1,31 +1,44 @@
-import React, {useState, useContext} from 'react';
-import styled from 'styled-components';
-import { MdSearch } from 'react-icons/md';
-import { GithubContext } from '../context/context';
+import React, { useState, useContext } from "react";
+import styled from "styled-components";
+import { MdSearch } from "react-icons/md";
+import { GithubContext } from "../context/context";
 const Search = () => {
   const [user, setUser] = useState("");
-  const {requests, error, searchGithubUser, loading} = useContext(GithubContext);
+  const { requests, error, searchGithubUser, loading } =
+    useContext(GithubContext);
   const handleChangeUser = (e) => {
     setUser(e.target.value);
-  }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(user.trim() === "") {
+    if (user.trim() === "") {
       return;
-    }
-    else {
+    } else {
       searchGithubUser(user);
     }
-  }
+  };
   return (
-    <section className='section'>
-      <Wrapper className='section-center'>
-        {error.show && <ErrorWrapper><p>{error.message}</p></ErrorWrapper>}
-        <form className='form' onSubmit={handleSubmit}>
-          <div className='form-control'>
-            <MdSearch className='label-icon' />
-            <input type='text' placeholder='enter github user' value={user} onChange={handleChangeUser}/>
-            {requests > 0 && loading === false && <button type='submit' className='btn'>search</button>}
+    <section className="section">
+      <Wrapper className="section-center">
+        {error.show && (
+          <ErrorWrapper>
+            <p>{error.message}</p>
+          </ErrorWrapper>
+        )}
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-control">
+            <MdSearch className="label-icon" />
+            <input
+              type="text"
+              placeholder="enter github user"
+              value={user}
+              onChange={handleChangeUser}
+            />
+            {requests > 0 && loading === false && (
+              <button type="submit" className="btn">
+                search
+              </button>
+            )}
           </div>
         </form>
         <h3>request: {requests}/60</h3>

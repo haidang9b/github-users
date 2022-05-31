@@ -1,23 +1,25 @@
-import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import styled from 'styled-components';
-import loginImg from '../images/login-img.svg';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import styled from "styled-components";
+import loginImg from "../images/login-img.svg";
+import { Redirect } from "react-router-dom";
 const Login = () => {
-  const {loginWithRedirect, isAuthenticated, user} = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   const isUser = isAuthenticated && user;
-  if(isUser){
-    return <Redirect to='/'></Redirect>
+  if (isUser) {
+    return <Redirect to="/"></Redirect>;
   }
   return (
     <Wrapper>
-      <div className='container'>
-        <img src={loginImg} alt='github user'/>
+      <div className="container">
+        <img src={loginImg} alt="github user" />
         <h1>github user</h1>
-        <button className='btn' onClick={loginWithRedirect}>login / sign up</button>
+        <button className="btn" onClick={loginWithRedirect}>
+          login / sign up
+        </button>
       </div>
     </Wrapper>
-  )
+  );
 };
 const Wrapper = styled.section`
   min-height: 100vh;

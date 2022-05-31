@@ -1,21 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { GithubContext } from "../context/context";
-import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from "./Charts";
-const chartData = [
-  {
-    label: "HTML",
-    value: "290",
-  },
-  {
-    label: "JavaScript",
-    value: "260",
-  },
-  {
-    label: "CSS",
-    value: "180",
-  },
-];
+import { Pie3D, Column3D, Bar3D, Doughnut2D } from "./Charts";
 
 const Repos = () => {
   const { repos } = useContext(GithubContext);
@@ -44,23 +30,28 @@ const Repos = () => {
       return { ...item, value: item.stars };
     });
 
-  let {stars, forks} = repos.reduce((total, item) => {
-    const { stargazers_count, forks, name } = item;
-    total.stars[stargazers_count] = {
-      label: name, value: stargazers_count,
-    };
-    total.forks[forks] = {
-      label: name, value: forks,
-    }
-    return total;
-  }, {stars: {}, forks: {}});
+  let { stars, forks } = repos.reduce(
+    (total, item) => {
+      const { stargazers_count, forks, name } = item;
+      total.stars[stargazers_count] = {
+        label: name,
+        value: stargazers_count,
+      };
+      total.forks[forks] = {
+        label: name,
+        value: forks,
+      };
+      return total;
+    },
+    { stars: {}, forks: {} }
+  );
   stars = Object.values(stars).slice(-5).reverse();
   forks = Object.values(forks).slice(-5).reverse();
   return (
     <section className="section">
       <Wrapper className="section-center">
         <Pie3D data={mostUsed} />
-        <Column3D data={stars}/>
+        <Column3D data={stars} />
         <Doughnut2D data={mostPopular} />
         <Bar3D data={forks} />
       </Wrapper>

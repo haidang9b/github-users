@@ -1,7 +1,6 @@
 // STEP 1 - Include Dependencies
 // Include react
 import React from "react";
-import ReactDOM from "react-dom";
 
 // Include the react-fusioncharts component
 import ReactFC from "react-fusioncharts";
@@ -20,12 +19,10 @@ ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 // STEP 2 - Chart Data
 
-
 // STEP 3 - Creating the JSON object to store the chart configurations
 
-
 // STEP 4 - Creating the DOM element to pass the react-fusioncharts component
-const Doughnut2D = ({data}) => {
+const Doughnut2D = ({ data }) => {
   const chartConfigs = {
     type: "doughnut2d", // The chart type
     width: "100%", // Width of the chart
@@ -42,12 +39,11 @@ const Doughnut2D = ({data}) => {
         showPercentValues: 0,
       },
       // Chart Data
-      data: data
-    }
+      data: data,
+    },
   };
- 
-  return (<ReactFC {...chartConfigs} />);
-  
-}
+
+  return <ReactFC {...chartConfigs} />;
+};
 
 export default Doughnut2D;
