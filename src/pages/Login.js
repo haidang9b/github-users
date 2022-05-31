@@ -2,8 +2,13 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import loginImg from '../images/login-img.svg';
+import { Redirect } from 'react-router-dom';
 const Login = () => {
-  const {loginWithRedirect} = useAuth0();
+  const {loginWithRedirect, isAuthenticated, user} = useAuth0();
+  const isUser = isAuthenticated && user;
+  if(isUser){
+    return <Redirect to='/'></Redirect>
+  }
   return (
     <Wrapper>
       <div className='container'>
