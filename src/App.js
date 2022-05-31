@@ -16,7 +16,6 @@ function App() {
           <Error></Error>
         </Route>
       </Switch>
-
     </Router>
   );
 }

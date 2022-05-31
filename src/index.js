@@ -10,7 +10,6 @@ ReactDOM.render(
   <React.StrictMode>
     <GithubProvider>
       <App />
-
     </GithubProvider>
   </React.StrictMode>,
   document.getElementById('root')
